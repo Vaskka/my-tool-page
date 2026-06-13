@@ -1,0 +1,13 @@
+---
+import ToolLayout from "../../layouts/ToolLayout.astro";
+import { RegexTester } from "../../components/tools/RegexTester";
+
+const toolMeta = {
+  title: "Regex Tester",
+  description: "Test regular expressions against text with real-time matching. See matches, groups, and replacements.",
+};
+---
+
+<ToolLayout title={toolMeta.title} description={toolMeta.description}>
+  <RegexTester client:load />
+</ToolLayout>

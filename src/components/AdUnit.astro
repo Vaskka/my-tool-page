@@ -1,0 +1,22 @@
+---
+import { ADSENSE_CLIENT_ID, ADSENSE_TOP_SLOT, ADSENSE_BOTTOM_SLOT } from "../lib/analytics";
+
+export interface Props {
+  slot: "top" | "bottom";
+}
+
+const { slot } = Astro.props;
+const adSlot = slot === "top" ? ADSENSE_TOP_SLOT : ADSENSE_BOTTOM_SLOT;
+---
+
+<div class="my-4 overflow-hidden">
+  <ins
+    class="adsbygoogle"
+    style="display:block"
+    data-ad-client={ADSENSE_CLIENT_ID}
+    data-ad-slot={adSlot}
+    data-ad-format="auto"
+    data-full-width-responsive="true"
+  >
+  </ins>
+</div>

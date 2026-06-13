@@ -1,0 +1,13 @@
+---
+import ToolLayout from "../../layouts/ToolLayout.astro";
+import { JwtDecoder } from "../../components/tools/JwtDecoder";
+
+const toolMeta = {
+  title: "JWT Decoder",
+  description: "Decode JWT tokens and inspect the header, payload, and signature. No data is sent to any server.",
+};
+---
+
+<ToolLayout title={toolMeta.title} description={toolMeta.description}>
+  <JwtDecoder client:load />
+</ToolLayout>

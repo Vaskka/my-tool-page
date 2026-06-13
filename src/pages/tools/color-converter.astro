@@ -1,0 +1,13 @@
+---
+import ToolLayout from "../../layouts/ToolLayout.astro";
+import { ColorConverter } from "../../components/tools/ColorConverter";
+
+const toolMeta = {
+  title: "Color Converter",
+  description: "Convert colors between HEX, RGB, HSL, and HSV formats. Pick colors visually with the color picker.",
+};
+---
+
+<ToolLayout title={toolMeta.title} description={toolMeta.description}>
+  <ColorConverter client:load />
+</ToolLayout>

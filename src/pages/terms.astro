@@ -1,0 +1,43 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Terms of Service"
+  description="DevToolsBox terms of service. Use our tools at your own discretion."
+>
+  <div class="max-w-3xl mx-auto px-4 py-8 prose prose-slate">
+    <h1>Terms of Service</h1>
+    <p class="text-slate-600"><em>Last updated: {new Date().toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}</em></p>
+
+    <h2>1. Acceptance of Terms</h2>
+    <p>
+      By using DevToolsBox, you agree to these terms of service. If you do not agree, please do not use our website.
+    </p>
+
+    <h2>2. Service Description</h2>
+    <p>
+      DevToolsBox provides free online developer and utility tools. All tools are provided "as is" without warranty of any kind. We process all data client-side in your browser, meaning your input never reaches our servers.
+    </p>
+
+    <h2>3. User Responsibilities</h2>
+    <p>
+      You agree not to use our tools for any illegal or unauthorized purpose. You must not misuse or attempt to disrupt our services.
+    </p>
+
+    <h2>4. Intellectual Property</h2>
+    <p>
+      The content, design, and tools on DevToolsBox are protected by copyright. You may not copy, modify, or redistribute our tools without permission.
+    </p>
+
+    <h2>5. Limitation of Liability</h2>
+    <p>
+      DevToolsBox and its operators shall not be liable for any damages arising from the use or inability to use our tools. You use our services at your own risk.
+    </p>
+
+    <h2>6. Changes to Terms</h2>
+    <p>
+      We reserve the right to modify these terms at any time. Continued use of the site after changes constitutes acceptance of the new terms.
+    </p>
+  </div>
+</BaseLayout>

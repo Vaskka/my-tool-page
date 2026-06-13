@@ -1,0 +1,13 @@
+---
+import ToolLayout from "../../layouts/ToolLayout.astro";
+import { HtmlEntityEncoder } from "../../components/tools/HtmlEntityEncoder";
+
+const toolMeta = {
+  title: "HTML Entity Encoder / Decoder",
+  description: "Encode special HTML characters to entities and decode HTML entities back to readable text.",
+};
+---
+
+<ToolLayout title={toolMeta.title} description={toolMeta.description}>
+  <HtmlEntityEncoder client:load />
+</ToolLayout>

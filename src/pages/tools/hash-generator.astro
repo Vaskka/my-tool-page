@@ -1,0 +1,13 @@
+---
+import ToolLayout from "../../layouts/ToolLayout.astro";
+import { HashGenerator } from "../../components/tools/HashGenerator";
+
+const toolMeta = {
+  title: "Hash Generator",
+  description: "Generate MD5, SHA-1, SHA-256, SHA-384, and SHA-512 hashes from any text input.",
+};
+---
+
+<ToolLayout title={toolMeta.title} description={toolMeta.description}>
+  <HashGenerator client:load />
+</ToolLayout>

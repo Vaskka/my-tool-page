@@ -1,0 +1,42 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+import AdUnit from "../components/AdUnit.astro";
+
+export interface Props {
+  title: string;
+  description: string;
+  keywords?: string;
+  canonical?: string;
+}
+
+const props = Astro.props;
+---
+
+<BaseLayout
+  title={props.title}
+  description={props.description}
+  canonical={props.canonical}
+>
+  <div class="max-w-4xl mx-auto px-4 py-8">
+    <article>
+      <h1 class="text-3xl font-bold text-slate-900 mb-2">{props.title}</h1>
+      <p class="text-slate-600 mb-6">{props.description}</p>
+
+      <AdUnit slot="top" />
+
+      <div class="my-6">
+        <slot />
+      </div>
+
+      <AdUnit slot="bottom" />
+
+      <div class="mt-8 p-4 bg-blue-50 rounded-lg border border-blue-100">
+        <h2 class="font-semibold text-blue-900 mb-1">How to use {props.title}</h2>
+        <p class="text-sm text-blue-700">
+          This {props.title.toLowerCase()} runs entirely in your browser.
+          No data is uploaded to any server. Your privacy is completely protected.
+        </p>
+      </div>
+    </article>
+  </div>
+</BaseLayout>

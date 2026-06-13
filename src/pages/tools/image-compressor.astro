@@ -1,0 +1,13 @@
+---
+import ToolLayout from "../../layouts/ToolLayout.astro";
+import { ImageCompressor } from "../../components/tools/ImageCompressor";
+
+const toolMeta = {
+  title: "Image Compressor",
+  description: "Compress JPEG, PNG, and WebP images online. Reduce file size without losing quality. 100% client-side.",
+};
+---
+
+<ToolLayout title={toolMeta.title} description={toolMeta.description}>
+  <ImageCompressor client:load />
+</ToolLayout>

@@ -1,0 +1,13 @@
+---
+import ToolLayout from "../../layouts/ToolLayout.astro";
+import { TextDiff } from "../../components/tools/TextDiff";
+
+const toolMeta = {
+  title: "Text Diff Checker",
+  description: "Compare two texts and find differences instantly. See what was added, removed, or changed line by line.",
+};
+---
+
+<ToolLayout title={toolMeta.title} description={toolMeta.description}>
+  <TextDiff client:load />
+</ToolLayout>

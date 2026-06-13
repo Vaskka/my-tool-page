@@ -1,0 +1,13 @@
+---
+import ToolLayout from "../../layouts/ToolLayout.astro";
+import { QrCodeGenerator } from "../../components/tools/QrCodeGenerator";
+
+const toolMeta = {
+  title: "QR Code Generator",
+  description: "Generate QR codes from URLs, text, or any data. Customizable size and color. Free, no sign-up needed.",
+};
+---
+
+<ToolLayout title={toolMeta.title} description={toolMeta.description}>
+  <QrCodeGenerator client:load />
+</ToolLayout>

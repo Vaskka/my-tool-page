@@ -1,0 +1,13 @@
+---
+import ToolLayout from "../../layouts/ToolLayout.astro";
+import { MarkdownPreviewer } from "../../components/tools/MarkdownPreviewer";
+
+const toolMeta = {
+  title: "Markdown Previewer",
+  description: "Write and preview Markdown in real-time. See how your Markdown renders as HTML instantly.",
+};
+---
+
+<ToolLayout title={toolMeta.title} description={toolMeta.description}>
+  <MarkdownPreviewer client:load />
+</ToolLayout>

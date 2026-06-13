@@ -1,0 +1,13 @@
+---
+import ToolLayout from "../../layouts/ToolLayout.astro";
+import { TextDeduplicator } from "../../components/tools/TextDeduplicator";
+
+const toolMeta = {
+  title: "Text Deduplicator",
+  description: "Remove duplicate lines from text. Sort alphabetically, keep first occurrence, or remove all duplicates.",
+};
+---
+
+<ToolLayout title={toolMeta.title} description={toolMeta.description}>
+  <TextDeduplicator client:load />
+</ToolLayout>

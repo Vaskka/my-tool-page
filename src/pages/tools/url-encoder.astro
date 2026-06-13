@@ -1,0 +1,13 @@
+---
+import ToolLayout from "../../layouts/ToolLayout.astro";
+import { UrlEncoder } from "../../components/tools/UrlEncoder";
+
+const toolMeta = {
+  title: "URL Encoder / Decoder",
+  description: "Encode special characters for URLs or decode percent-encoded URLs back to readable text.",
+};
+---
+
+<ToolLayout title={toolMeta.title} description={toolMeta.description}>
+  <UrlEncoder client:load />
+</ToolLayout>

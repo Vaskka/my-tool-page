@@ -1,0 +1,18 @@
+---
+import { siteTitle, footerLinks } from "../config";
+---
+
+<footer class="border-t border-slate-200 mt-12 py-8 text-sm text-slate-500">
+  <div class="max-w-6xl mx-auto px-4">
+    <div class="flex flex-wrap justify-between gap-4 mb-4">
+      <span>{siteTitle} &copy; {new Date().getFullYear()}</span>
+      <div class="flex gap-4">
+        {footerLinks.map((link) => (
+          <a href={link.href} class="text-slate-500 hover:text-blue-600 no-underline">
+            {link.label}
+          </a>
+        ))}
+      </div>
+    </div>
+  </div>
+</footer>

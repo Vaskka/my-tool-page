@@ -1,0 +1,13 @@
+---
+import ToolLayout from "../../layouts/ToolLayout.astro";
+import { ImageToBase64 } from "../../components/tools/ImageToBase64";
+
+const toolMeta = {
+  title: "Image to Base64",
+  description: "Convert images to Base64 data URIs. Embed images directly in HTML, CSS, or JSON without external files.",
+};
+---
+
+<ToolLayout title={toolMeta.title} description={toolMeta.description}>
+  <ImageToBase64 client:load />
+</ToolLayout>

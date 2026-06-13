@@ -1,0 +1,13 @@
+---
+import ToolLayout from "../../layouts/ToolLayout.astro";
+import { WordCounter } from "../../components/tools/WordCounter";
+
+const toolMeta = {
+  title: "Word Counter",
+  description: "Count words, characters, sentences, and paragraphs. Get reading time estimates for your text.",
+};
+---
+
+<ToolLayout title={toolMeta.title} description={toolMeta.description}>
+  <WordCounter client:load />
+</ToolLayout>

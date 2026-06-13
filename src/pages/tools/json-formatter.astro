@@ -1,0 +1,13 @@
+---
+import ToolLayout from "../../layouts/ToolLayout.astro";
+import { JsonFormatter } from "../../components/tools/JsonFormatter";
+
+const toolMeta = {
+  title: "JSON Formatter",
+  description: "Format, validate, and beautify JSON data instantly. Parse and fix malformed JSON with syntax highlighting.",
+};
+---
+
+<ToolLayout title={toolMeta.title} description={toolMeta.description}>
+  <JsonFormatter client:load />
+</ToolLayout>

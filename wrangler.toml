@@ -1,3 +1,0 @@
-# DevToolsBox - Static site, no Functions needed
-name = "my-tool-page"
-pages_build_output_dir = "dist"

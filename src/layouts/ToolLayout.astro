@@ -31,7 +31,7 @@ const { slug, ...props } = Astro.props;
       <AdUnit slot="bottom" />
 
       <div class="mt-8 prose prose-slate max-w-none">
-        <h2 data-i18n={`tool.${slug}.aboutHeading`}>About the {props.title}</h2>
+        <h2 data-i18n={`tool.${slug}.aboutHeading`} data-i18n-tool={`tool.${slug}.title`}>About the {props.title}</h2>
         <p data-i18n={`tool.${slug}.intro`}>Loading...</p>
 
         <h2 data-i18n="tool.howToUseHeading">How to Use</h2>
@@ -49,7 +49,7 @@ const { slug, ...props } = Astro.props;
         </ul>
 
         <div class="p-4 bg-blue-50 rounded-lg border border-blue-100 not-prose mt-6">
-          <p class="text-sm text-blue-700 font-medium" data-i18n="tool.privacyNotice">
+          <p class="text-sm text-blue-700 font-medium" data-i18n="tool.privacyNotice" data-i18n-tool={`tool.${slug}.title`}>
             This {props.title.toLowerCase()} runs entirely in your browser.
             No data is uploaded to any server. Your privacy is completely protected.
           </p>

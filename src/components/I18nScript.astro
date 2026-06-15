@@ -28,6 +28,16 @@ import { dict } from "../lib/i18n/index";
     return null;
   }
 
+  function replacePlaceholders(text, el) {
+    if (!text) return text;
+    var toolKey = el.getAttribute('data-i18n-tool');
+    if (toolKey && dict[toolKey]) {
+      var toolName = dict[toolKey][window.__LOCALE__ || 'en'] || toolKey;
+      text = text.replace(/\{tool\}/g, toolName);
+    }
+    return text;
+  }
+
   function applyLocale(locale) {
     window.__LOCALE__ = locale;
     localStorage.setItem(STORAGE_KEY, locale);
@@ -38,7 +48,7 @@ import { dict } from "../lib/i18n/index";
       var el = els[i];
       var key = el.getAttribute('data-i18n');
       var text = getText(key, locale);
-      if (text) el.textContent = text;
+      if (text) el.textContent = replacePlaceholders(text, el);
     }
 
     var attrEls = document.querySelectorAll('[data-i18n-placeholder]');

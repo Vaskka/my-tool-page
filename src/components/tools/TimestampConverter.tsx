@@ -1,4 +1,5 @@
 import { useState, useCallback } from "react";
+import { t } from "../../lib/i18n/react";
 
 export function TimestampConverter() {
   const [timestamp, setTimestamp] = useState("");
@@ -13,7 +14,7 @@ export function TimestampConverter() {
   const convertToDate = useCallback(() => {
     const num = Number(timestamp);
     if (!timestamp.trim() || isNaN(num)) {
-      setError("Please enter a valid number");
+      setError(t("Please enter a valid number", "请输入有效的数字"));
       setDateResult(null);
       return;
     }
@@ -24,7 +25,7 @@ export function TimestampConverter() {
 
   const convertToTimestamp = useCallback(() => {
     if (!datePicker) {
-      setError("Please select a date");
+      setError(t("Please select a date", "请选择日期"));
       return;
     }
     setError("");
@@ -46,12 +47,12 @@ export function TimestampConverter() {
     <div className="space-y-6">
       <div className="space-y-3">
         <h3 className="text-sm font-semibold text-slate-700">
-          Timestamp → Date
+          {t("Timestamp to Date", "时间戳转日期")}
         </h3>
         <input
           type="text"
           className="w-full p-3 border border-slate-300 rounded-lg font-mono"
-          placeholder="Enter timestamp..."
+          placeholder={t("Enter timestamp...", "输入时间戳...")}
           value={timestamp}
           onChange={(e) => setTimestamp(e.target.value)}
         />
@@ -62,36 +63,36 @@ export function TimestampConverter() {
             onChange={(e) => setIsMs(e.target.checked)}
             className="rounded"
           />
-          Milliseconds
+          {t("Milliseconds", "毫秒")}
         </label>
         <button
           onClick={convertToDate}
           className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
           disabled={!timestamp.trim()}
         >
-          Convert to Date
+          {t("Convert to Date", "转换为日期")}
         </button>
 
         {dateResult && (
           <div className="space-y-2 p-4 border border-slate-300 rounded-lg bg-slate-50">
             <p className="text-sm font-mono">
-              <span className="text-slate-500">ISO:</span>{" "}
+              <span className="text-slate-500">{t("ISO:", "ISO：")}</span>{" "}
               {dateResult.toISOString()}
             </p>
             <p className="text-sm font-mono">
-              <span className="text-slate-500">UTC:</span>{" "}
+              <span className="text-slate-500">{t("UTC:", "UTC：")}</span>{" "}
               {dateResult.toUTCString()}
             </p>
             <p className="text-sm font-mono">
-              <span className="text-slate-500">Local:</span>{" "}
+              <span className="text-slate-500">{t("Local:", "本地：")}</span>{" "}
               {dateResult.toLocaleString()}
             </p>
             <p className="text-sm font-mono">
-              <span className="text-slate-500">Locale Date:</span>{" "}
+              <span className="text-slate-500">{t("Locale Date:", "本地日期：")}</span>{" "}
               {dateResult.toLocaleDateString()}
             </p>
             <p className="text-sm font-mono">
-              <span className="text-slate-500">Locale Time:</span>{" "}
+              <span className="text-slate-500">{t("Locale Time:", "本地时间：")}</span>{" "}
               {dateResult.toLocaleTimeString()}
             </p>
           </div>
@@ -102,11 +103,11 @@ export function TimestampConverter() {
 
       <div className="space-y-3">
         <h3 className="text-sm font-semibold text-slate-700">
-          Date → Timestamp
+          {t("Date to Timestamp", "日期转时间戳")}
         </h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div>
-            <label className="block text-sm text-slate-600 mb-1">Date</label>
+              <label className="block text-sm text-slate-600 mb-1">{t("Date", "日期")}</label>
             <input
               type="date"
               value={datePicker}
@@ -115,7 +116,7 @@ export function TimestampConverter() {
             />
           </div>
           <div>
-            <label className="block text-sm text-slate-600 mb-1">Time</label>
+              <label className="block text-sm text-slate-600 mb-1">{t("Time", "时间")}</label>
             <input
               type="time"
               value={timePicker}
@@ -130,7 +131,7 @@ export function TimestampConverter() {
             className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
             disabled={!datePicker}
           >
-            Convert to Timestamp
+            {t("Convert to Timestamp", "转换为时间戳")}
           </button>
           {tsResult && (
             <>
@@ -141,7 +142,7 @@ export function TimestampConverter() {
                 onClick={copyResult}
                 className="px-3 py-1 text-sm bg-slate-600 text-white rounded-lg hover:bg-slate-700 transition-colors"
               >
-                {copied ? "Copied!" : "Copy"}
+                {copied ? t("Copied!", "已复制！") : t("Copy", "复制")}
               </button>
             </>
           )}

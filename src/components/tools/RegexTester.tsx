@@ -1,4 +1,5 @@
 import { useState, useCallback, useMemo } from "react";
+import { t } from "../../lib/i18n/react";
 
 export function RegexTester() {
   const [pattern, setPattern] = useState("");
@@ -41,7 +42,7 @@ export function RegexTester() {
     <div className="space-y-4">
       <div className="flex flex-wrap gap-2 items-end">
         <div className="flex-1 min-w-[200px]">
-          <label className="block text-sm text-slate-600 mb-1">Pattern</label>
+          <label className="block text-sm text-slate-600 mb-1">{t("Pattern", "正则表达式")}</label>
           <input
             type="text"
             className="w-full p-3 border border-slate-300 rounded-lg font-mono text-sm"
@@ -54,7 +55,7 @@ export function RegexTester() {
           />
         </div>
         <div>
-          <label className="block text-sm text-slate-600 mb-1">Flags</label>
+          <label className="block text-sm text-slate-600 mb-1">{t("Flags", "标志")}</label>
           <div className="flex gap-1">
             {["g", "i", "m"].map((flag) => (
               <button
@@ -75,7 +76,7 @@ export function RegexTester() {
 
       <textarea
         className="w-full p-3 border border-slate-300 rounded-lg font-mono text-sm min-h-[200px] resize-y"
-        placeholder="Test string..."
+        placeholder={t("Test string...", "测试字符串...")}
         value={testString}
         onChange={(e) => setTestString(e.target.value)}
       />
@@ -86,7 +87,7 @@ export function RegexTester() {
         <div className="space-y-3">
           <div className="flex gap-4 text-sm">
             <span className="font-medium">
-              Matches: <span className="text-blue-600">{results.count}</span>
+              {t("Matches:", "匹配数：")} <span className="text-blue-600">{results.count}</span>
             </span>
           </div>
 
@@ -99,7 +100,7 @@ export function RegexTester() {
               </div>
               <details className="text-sm">
                 <summary className="cursor-pointer text-slate-600 hover:text-slate-800">
-                  Match list ({results.count})
+                  {t("Match list", "匹配列表")} ({results.count})
                 </summary>
                 <ul className="mt-2 space-y-1 pl-4 list-disc">
                   {results.matches.map((m, i) => (

@@ -7,9 +7,12 @@ export interface Props {
   description: string;
   keywords?: string;
   canonical?: string;
+  slug?: string;
 }
 
 const props = Astro.props;
+const toolTitleKey = props.slug ? `tool.${props.slug}.title` : "";
+const toolDescKey = props.slug ? `tool.${props.slug}.description` : "";
 ---
 
 <BaseLayout
@@ -19,8 +22,8 @@ const props = Astro.props;
 >
   <div class="max-w-4xl mx-auto px-4 py-8">
     <article>
-      <h1 class="text-3xl font-bold text-slate-900 mb-2">{props.title}</h1>
-      <p class="text-slate-600 mb-6">{props.description}</p>
+      <h1 class="text-3xl font-bold text-slate-900 mb-2" data-i18n={toolTitleKey}>{props.title}</h1>
+      <p class="text-slate-600 mb-6" data-i18n={toolDescKey}>{props.description}</p>
 
       <AdUnit slot="top" />
 
@@ -31,8 +34,8 @@ const props = Astro.props;
       <AdUnit slot="bottom" />
 
       <div class="mt-8 p-4 bg-blue-50 rounded-lg border border-blue-100">
-        <h2 class="font-semibold text-blue-900 mb-1">How to use {props.title}</h2>
-        <p class="text-sm text-blue-700">
+        <h2 class="font-semibold text-blue-900 mb-1" data-i18n="tool.howToUse">How to use {props.title}</h2>
+        <p class="text-sm text-blue-700" data-i18n="tool.privacyNotice">
           This {props.title.toLowerCase()} runs entirely in your browser.
           No data is uploaded to any server. Your privacy is completely protected.
         </p>

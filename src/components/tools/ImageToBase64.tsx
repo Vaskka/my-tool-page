@@ -1,4 +1,5 @@
 import { useState, useCallback, useRef } from "react";
+import { t } from "../../lib/i18n/react";
 
 export function ImageToBase64() {
   const [base64, setBase64] = useState("");
@@ -72,31 +73,31 @@ export function ImageToBase64() {
 
           <img
             src={previewUrl}
-            alt="Preview"
+            alt={t("Preview", "预览")}
             className="max-w-full max-h-[300px] rounded-lg border border-slate-200 object-contain"
           />
 
           <div className="space-y-1">
             <div className="flex items-center justify-between">
-              <span className="text-xs font-semibold text-slate-500 uppercase">Base64 Data URI</span>
+              <span className="text-xs font-semibold text-slate-500 uppercase">{t("Base64 Data URI", "Base64数据URI")}</span>
               <div className="flex gap-2">
                 <button
                   onClick={() => copy(base64, setCopiedBase64)}
                   className="px-3 py-1 text-xs bg-slate-600 text-white rounded hover:bg-slate-700 transition-colors"
                 >
-                  {copiedBase64 ? "Copied!" : "Copy Base64"}
+                  {copiedBase64 ? t("Copied!", "已复制！") : t("Copy Base64", "复制Base64")}
                 </button>
                 <button
                   onClick={copyAsCss}
                   className="px-3 py-1 text-xs bg-slate-500 text-white rounded hover:bg-slate-600 transition-colors"
                 >
-                  {copiedCss ? "Copied!" : "Copy as CSS"}
+                  {copiedCss ? t("Copied!", "已复制！") : t("Copy as CSS", "复制为CSS")}
                 </button>
                 <button
                   onClick={copyAsImgTag}
                   className="px-3 py-1 text-xs bg-slate-500 text-white rounded hover:bg-slate-600 transition-colors"
                 >
-                  {copiedImg ? "Copied!" : "Copy as IMG"}
+                  {copiedImg ? t("Copied!", "已复制！") : t("Copy as IMG", "复制为IMG")}
                 </button>
               </div>
             </div>

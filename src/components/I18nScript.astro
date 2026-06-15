@@ -1,0 +1,55 @@
+---
+import { dict } from "../lib/i18n/index";
+---
+
+<script is:inline>
+(function () {
+  var dict = {
+    {Object.entries(dict).map(([key, val]) => `"${key}":{"en":${JSON.stringify(val.en)},"zh":${JSON.stringify(val.zh)}}`).join(",\n    ")}
+  };
+
+  function getLocale() {
+    var match = document.cookie.match(/locale=(\w+)/);
+    if (match && match[1] === 'zh') return 'zh';
+    if (match && match[1] === 'en') return 'en';
+
+    var lang = navigator.language || '';
+    if (lang.startsWith('zh')) return 'zh';
+
+    return 'en';
+  }
+
+  var locale = getLocale();
+  window.__LOCALE__ = locale;
+
+  document.documentElement.lang = locale === 'zh' ? 'zh-CN' : 'en';
+
+  if (locale === 'zh') {
+    function applyLocale() {
+      var els = document.querySelectorAll('[data-i18n]');
+      for (var i = 0; i < els.length; i++) {
+        var el = els[i];
+        var key = el.getAttribute('data-i18n');
+        if (key && dict[key]) {
+          el.textContent = dict[key].zh;
+        }
+      }
+
+      var attrEls = document.querySelectorAll('[data-i18n-placeholder]');
+      for (var j = 0; j < attrEls.length; j++) {
+        var ael = attrEls[j];
+        var akey = ael.getAttribute('data-i18n-placeholder');
+        if (akey && dict[akey]) {
+          ael.setAttribute('placeholder', dict[akey].zh);
+        }
+      }
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', applyLocale);
+    } else {
+      applyLocale();
+    }
+  }
+})();
+</script>

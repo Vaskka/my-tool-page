@@ -1,4 +1,5 @@
 import { useState, useCallback } from "react";
+import { t } from "../../lib/i18n/react";
 
 const CHAR_SETS: Record<string, string> = {
   uppercase: "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
@@ -60,11 +61,25 @@ export function PasswordGenerator() {
   const activeTypes = Object.values(options).filter(Boolean).length;
   const strength = password ? getStrength(password, activeTypes) : null;
 
+  const optionLabels: Record<string, string> = {
+    uppercase: t("Uppercase", "大写字母"),
+    lowercase: t("Lowercase", "小写字母"),
+    numbers: t("Numbers", "数字"),
+    symbols: t("Symbols", "符号"),
+  };
+
+  const strengthLabels: Record<string, string> = {
+    "Weak": t("Weak", "弱"),
+    "Medium": t("Medium", "中等"),
+    "Strong": t("Strong", "强"),
+    "Very Strong": t("Very Strong", "非常强"),
+  };
+
   return (
     <div className="space-y-5">
       <div className="space-y-2">
         <div className="flex items-center justify-between">
-          <label className="text-sm font-medium text-slate-700">Length: {length}</label>
+          <label className="text-sm font-medium text-slate-700">{t("Length:", "长度：")} {length}</label>
         </div>
         <input
           type="range"
@@ -89,7 +104,7 @@ export function PasswordGenerator() {
               onChange={() => toggleOption(key)}
               className="accent-blue-600 w-4 h-4"
             />
-            {key.charAt(0).toUpperCase() + key.slice(1)}
+            {optionLabels[key]}
           </label>
         ))}
       </div>
@@ -99,7 +114,7 @@ export function PasswordGenerator() {
         disabled={activeTypes === 0}
         className="px-5 py-2.5 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium disabled:opacity-50 disabled:cursor-not-allowed"
       >
-        Generate Password
+        {t("Generate Password", "生成密码")}
       </button>
 
       {password && (
@@ -112,15 +127,15 @@ export function PasswordGenerator() {
               onClick={copy}
               className="px-4 py-3 bg-slate-600 text-white rounded-lg hover:bg-slate-700 transition-colors text-sm shrink-0"
             >
-              {copied ? "Copied!" : "Copy"}
+              {copied ? t("Copied!", "已复制！") : t("Copy", "复制")}
             </button>
           </div>
 
           <div>
             <div className="flex items-center gap-2 mb-1">
-              <span className="text-xs text-slate-500">Strength:</span>
+              <span className="text-xs text-slate-500">{t("Strength:", "强度：")}</span>
               <span className={`text-xs font-semibold ${strength?.color.replace("bg-", "text-")}`}>
-                {strength?.label}
+                {strength && strengthLabels[strength.label]}
               </span>
             </div>
             <div className="w-full h-2 bg-slate-200 rounded-full overflow-hidden">

@@ -1,4 +1,5 @@
 import { useState, useCallback, useEffect, useRef } from "react";
+import { t } from "../../lib/i18n/react";
 
 function rgbToHex(r: number, g: number, b: number): string {
   return "#" + [r, g, b].map((c) => c.toString(16).padStart(2, "0")).join("");
@@ -179,7 +180,7 @@ export function ColorConverter() {
 
       <div className="space-y-3">
         <div className="space-y-1">
-          <label className="text-xs font-semibold text-slate-500 uppercase">HEX</label>
+          <label className="text-xs font-semibold text-slate-500 uppercase">{t("HEX", "HEX")}</label>
           <div className="flex items-center gap-2">
             <input
               type="text"
@@ -191,13 +192,13 @@ export function ColorConverter() {
               onClick={() => copy(hex, setCopiedHex)}
               className="px-3 py-2 bg-slate-600 text-white rounded-lg hover:bg-slate-700 transition-colors text-sm shrink-0"
             >
-              {copiedHex ? "Copied!" : "Copy"}
+              {copiedHex ? t("Copied!", "已复制！") : t("Copy", "复制")}
             </button>
           </div>
         </div>
 
         <div className="space-y-1">
-          <label className="text-xs font-semibold text-slate-500 uppercase">RGB</label>
+          <label className="text-xs font-semibold text-slate-500 uppercase">{t("RGB", "RGB")}</label>
           <div className="flex items-center gap-2">
             <input
               type="text"
@@ -209,13 +210,13 @@ export function ColorConverter() {
               onClick={() => copy(rgb, setCopiedRgb)}
               className="px-3 py-2 bg-slate-600 text-white rounded-lg hover:bg-slate-700 transition-colors text-sm shrink-0"
             >
-              {copiedRgb ? "Copied!" : "Copy"}
+              {copiedRgb ? t("Copied!", "已复制！") : t("Copy", "复制")}
             </button>
           </div>
         </div>
 
         <div className="space-y-1">
-          <label className="text-xs font-semibold text-slate-500 uppercase">HSL</label>
+          <label className="text-xs font-semibold text-slate-500 uppercase">{t("HSL", "HSL")}</label>
           <div className="flex items-center gap-2">
             <input
               type="text"
@@ -227,7 +228,7 @@ export function ColorConverter() {
               onClick={() => copy(hsl, setCopiedHsl)}
               className="px-3 py-2 bg-slate-600 text-white rounded-lg hover:bg-slate-700 transition-colors text-sm shrink-0"
             >
-              {copiedHsl ? "Copied!" : "Copy"}
+              {copiedHsl ? t("Copied!", "已复制！") : t("Copy", "复制")}
             </button>
           </div>
         </div>

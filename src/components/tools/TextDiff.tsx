@@ -1,4 +1,5 @@
 import { useState, useCallback, useEffect, useRef } from "react";
+import { t } from "../../lib/i18n/react";
 import { diffLines } from "diff";
 
 interface LineChange {
@@ -70,17 +71,17 @@ export function TextDiff() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div className="space-y-2">
           <div className="flex items-center justify-between">
-            <label className="text-xs font-semibold text-slate-500 uppercase">Original Text</label>
+            <label className="text-xs font-semibold text-slate-500 uppercase">{t("Original Text", "原始文本")}</label>
             <button
               onClick={() => copy(original, setCopiedOriginal)}
               className="px-2 py-0.5 text-xs bg-slate-500 text-white rounded hover:bg-slate-600 transition-colors"
             >
-              {copiedOriginal ? "Copied!" : "Copy"}
+              {copiedOriginal ? t("Copied!", "已复制！") : t("Copy", "复制")}
             </button>
           </div>
           <textarea
             className="w-full p-3 border border-slate-300 rounded-lg font-mono text-sm min-h-[200px] resize-y"
-            placeholder="Paste original text..."
+            placeholder={t("Paste original text...", "粘贴原始文本...")}
             value={original}
             onChange={(e) => setOriginal(e.target.value)}
           />
@@ -88,17 +89,17 @@ export function TextDiff() {
 
         <div className="space-y-2">
           <div className="flex items-center justify-between">
-            <label className="text-xs font-semibold text-slate-500 uppercase">Modified Text</label>
+            <label className="text-xs font-semibold text-slate-500 uppercase">{t("Modified Text", "修改后文本")}</label>
             <button
               onClick={() => copy(modified, setCopiedModified)}
               className="px-2 py-0.5 text-xs bg-slate-500 text-white rounded hover:bg-slate-600 transition-colors"
             >
-              {copiedModified ? "Copied!" : "Copy"}
+              {copiedModified ? t("Copied!", "已复制！") : t("Copy", "复制")}
             </button>
           </div>
           <textarea
             className="w-full p-3 border border-slate-300 rounded-lg font-mono text-sm min-h-[200px] resize-y"
-            placeholder="Paste modified text..."
+            placeholder={t("Paste modified text...", "粘贴修改后的文本...")}
             value={modified}
             onChange={(e) => setModified(e.target.value)}
           />
@@ -109,13 +110,13 @@ export function TextDiff() {
         onClick={compare}
         className="px-5 py-2.5 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium"
       >
-        Compare Now
+        {t("Compare Now", "开始对比")}
       </button>
 
       {(stats.added > 0 || stats.removed > 0) && (
         <div className="flex gap-4 text-sm">
-          <span className="text-green-700 font-medium">+{stats.added} lines added</span>
-          <span className="text-red-700 font-medium">-{stats.removed} lines removed</span>
+          <span className="text-green-700 font-medium">+{stats.added} {t("lines added", "行已添加")}</span>
+          <span className="text-red-700 font-medium">-{stats.removed} {t("lines removed", "行已删除")}</span>
         </div>
       )}
 
@@ -151,7 +152,7 @@ export function TextDiff() {
       )}
 
       {original && modified && changes.length === 0 && (
-        <p className="text-sm text-slate-400 text-center py-4">No differences found.</p>
+        <p className="text-sm text-slate-400 text-center py-4">{t("No differences found.", "未发现差异。")}</p>
       )}
     </div>
   );

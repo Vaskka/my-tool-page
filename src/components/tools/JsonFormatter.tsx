@@ -1,4 +1,5 @@
 import { useState, useCallback } from "react";
+import { t } from "../../lib/i18n/react";
 
 export function JsonFormatter() {
   const [input, setInput] = useState("");
@@ -72,7 +73,7 @@ export function JsonFormatter() {
     <div className="space-y-4">
       <textarea
         className="w-full p-3 border border-slate-300 rounded-lg font-mono text-sm min-h-[200px] resize-y"
-        placeholder='{"key": "value"}'
+        placeholder={t('{"key": "value"}', '{"key": "value"}')}
         value={input}
         onChange={(e) => setInput(e.target.value)}
       />
@@ -83,53 +84,53 @@ export function JsonFormatter() {
           className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
           disabled={!input.trim()}
         >
-          Format
+          {t("Format", "格式化")}
         </button>
         <button
           onClick={minify}
           className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
           disabled={!input.trim()}
         >
-          Minify
+          {t("Minify", "压缩")}
         </button>
         <button
           onClick={validate}
           className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
           disabled={!input.trim()}
         >
-          Validate
+          {t("Validate", "验证")}
         </button>
         <button
           onClick={escape}
           className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"
           disabled={!input.trim()}
         >
-          Escape
+          {t("Escape", "转义")}
         </button>
         <button
           onClick={unescape}
           className="px-4 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-700 transition-colors"
           disabled={!input.trim()}
         >
-          Unescape
+          {t("Unescape", "反转义")}
         </button>
       </div>
 
       {valid !== null && (
         <div className={`text-sm font-medium ${valid ? "text-green-600" : "text-red-600"}`}>
-          {valid ? "✓ Valid JSON" : `✗ ${error}`}
+          {valid ? `✓ ${t("Valid JSON", "有效的JSON")}` : `✗ ${error}`}
         </div>
       )}
 
       {output && (
         <div className="space-y-2">
           <div className="flex items-center justify-between">
-            <span className="text-sm text-slate-500">Output</span>
+            <span className="text-sm text-slate-500">{t("Output", "输出")}</span>
             <button
               onClick={copy}
               className="px-3 py-1 text-sm bg-slate-600 text-white rounded-lg hover:bg-slate-700 transition-colors"
             >
-              {copied ? "Copied!" : "Copy"}
+              {copied ? t("Copied!", "已复制！") : t("Copy", "复制")}
             </button>
           </div>
           <pre className="w-full p-3 border border-slate-300 rounded-lg bg-slate-50 font-mono text-sm overflow-auto max-h-[400px] whitespace-pre-wrap">

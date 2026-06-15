@@ -1,4 +1,5 @@
 import { useState, useCallback, useMemo } from "react";
+import { t } from "../../lib/i18n/react";
 
 const LOREM_WORDS = [
   "lorem", "ipsum", "dolor", "sit", "amet", "consectetur", "adipiscing", "elit",
@@ -73,7 +74,7 @@ export function LoremIpsum() {
     <div className="space-y-5">
       <div className="flex flex-wrap items-center gap-4">
         <label className="text-sm text-slate-700">
-          Paragraphs:
+          {t("Paragraphs:", "段落数：")}
           <input
             type="number"
             min={1}
@@ -93,7 +94,7 @@ export function LoremIpsum() {
             onChange={(e) => setStartWithLorem(e.target.checked)}
             className="accent-blue-600 w-4 h-4"
           />
-          Start with "Lorem ipsum dolor sit amet..."
+          {t('Start with "Lorem ipsum dolor sit amet..."', '以"Lorem ipsum dolor sit amet..."开头')}
         </label>
       </div>
 
@@ -101,20 +102,20 @@ export function LoremIpsum() {
         onClick={generate}
         className="px-5 py-2.5 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium"
       >
-        Generate
+        {t("Generate", "生成")}
       </button>
 
       {output && (
         <div className="space-y-2">
           <div className="flex items-center justify-between">
             <span className="text-sm text-slate-500">
-              {output.split("\n\n").length} paragraphs, {output.split(/\s+/).length} words
+              {output.split("\n\n").length} {t("paragraphs", "段落")}, {output.split(/\s+/).length} {t("words", "词")}
             </span>
             <button
               onClick={copy}
               className="px-3 py-1 text-sm bg-slate-600 text-white rounded-lg hover:bg-slate-700 transition-colors"
             >
-              {copied ? "Copied!" : "Copy"}
+              {copied ? t("Copied!", "已复制！") : t("Copy", "复制")}
             </button>
           </div>
           <div className="p-4 bg-slate-50 border border-slate-300 rounded-lg text-sm text-slate-700 leading-relaxed max-h-[400px] overflow-auto whitespace-pre-wrap">

@@ -1,5 +1,6 @@
 import { useState, useRef, useCallback } from "react";
 import QRCode from "qrcode";
+import { t } from "../../lib/i18n/react";
 
 export function QrCodeGenerator() {
   const [text, setText] = useState("");
@@ -11,7 +12,7 @@ export function QrCodeGenerator() {
 
   const generate = useCallback(() => {
     if (!canvasRef.current || !text.trim()) {
-      setError("Please enter text or URL");
+      setError(t("Please enter text or URL", "请输入文本或URL"));
       return;
     }
     setError("");
@@ -35,7 +36,7 @@ export function QrCodeGenerator() {
       <input
         type="text"
         className="w-full p-3 border border-slate-300 rounded-lg"
-        placeholder="Enter URL or text..."
+        placeholder={t("Enter URL or text...", "输入URL或文本...")}
         value={text}
         onChange={(e) => setText(e.target.value)}
       />
@@ -43,7 +44,7 @@ export function QrCodeGenerator() {
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
           <label className="block text-sm text-slate-600 mb-1">
-            Size: {size}px
+            {t("Size:", "尺寸：")} {size}px
           </label>
           <input
             type="range"
@@ -56,7 +57,7 @@ export function QrCodeGenerator() {
         </div>
         <div className="flex gap-4">
           <div>
-            <label className="block text-sm text-slate-600 mb-1">Foreground</label>
+            <label className="block text-sm text-slate-600 mb-1">{t("Foreground", "前景色")}</label>
             <input
               type="color"
               value={fg}
@@ -65,7 +66,7 @@ export function QrCodeGenerator() {
             />
           </div>
           <div>
-            <label className="block text-sm text-slate-600 mb-1">Background</label>
+            <label className="block text-sm text-slate-600 mb-1">{t("Background", "背景色")}</label>
             <input
               type="color"
               value={bg}
@@ -82,13 +83,13 @@ export function QrCodeGenerator() {
           className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
           disabled={!text.trim()}
         >
-          Generate QR Code
+          {t("Generate QR Code", "生成二维码")}
         </button>
         <button
           onClick={download}
           className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"
         >
-          Download PNG
+          {t("Download PNG", "下载PNG")}
         </button>
       </div>
 

@@ -1,5 +1,6 @@
 import { useState, useCallback } from "react";
 import imageCompression from "browser-image-compression";
+import { t } from "../../lib/i18n/react";
 
 function formatBytes(bytes: number): string {
   if (bytes === 0) return "0 B";
@@ -73,11 +74,11 @@ export function ImageCompressor() {
       {originalUrl && (
         <div className="space-y-2">
           <p className="text-sm text-slate-600">
-            Original: {formatBytes(originalSize)}
+            {t("Original:", "原始：")} {formatBytes(originalSize)}
           </p>
           <img
             src={originalUrl}
-            alt="Original"
+            alt={t("Original", "原始图片")}
             className="max-w-full max-h-64 rounded-lg border border-slate-200"
           />
         </div>
@@ -86,7 +87,7 @@ export function ImageCompressor() {
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
         <div>
           <label className="block text-sm text-slate-600 mb-1">
-            Quality: {quality}
+            {t("Quality:", "质量：")} {quality}
           </label>
           <input
             type="range"
@@ -99,7 +100,7 @@ export function ImageCompressor() {
           />
         </div>
         <div>
-          <label className="block text-sm text-slate-600 mb-1">Max Width (px)</label>
+          <label className="block text-sm text-slate-600 mb-1">{t("Max Width (px)", "最大宽度 (px)")}</label>
           <input
             type="number"
             value={maxWidth}
@@ -109,7 +110,7 @@ export function ImageCompressor() {
           />
         </div>
         <div>
-          <label className="block text-sm text-slate-600 mb-1">Max Height (px)</label>
+          <label className="block text-sm text-slate-600 mb-1">{t("Max Height (px)", "最大高度 (px)")}</label>
           <input
             type="number"
             value={maxHeight}
@@ -125,7 +126,7 @@ export function ImageCompressor() {
         disabled={!file || loading}
         className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50"
       >
-        {loading ? "Compressing..." : "Compress"}
+        {loading ? t("Compressing...", "压缩中...") : t("Compress", "压缩")}
       </button>
 
       {error && <div className="text-sm text-red-600">{error}</div>}
@@ -133,7 +134,7 @@ export function ImageCompressor() {
       {compressedUrl && (
         <div className="space-y-2">
           <p className="text-sm text-slate-600">
-            Compressed: {formatBytes(compressedSize)} (
+            {t("Compressed: ", "已压缩：")}{formatBytes(compressedSize)} (
             {originalSize > 0
               ? ((1 - compressedSize / originalSize) * 100).toFixed(1) + "% saved"
               : ""}
@@ -141,14 +142,14 @@ export function ImageCompressor() {
           </p>
           <img
             src={compressedUrl}
-            alt="Compressed"
+            alt={t("Compressed", "压缩后图片")}
             className="max-w-full max-h-64 rounded-lg border border-slate-200"
           />
           <button
             onClick={download}
             className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"
           >
-            Download Compressed Image
+            {t("Download Compressed Image", "下载压缩图片")}
           </button>
         </div>
       )}

@@ -1,5 +1,6 @@
 import { useState, useCallback } from "react";
 import CryptoJS from "crypto-js";
+import { t } from "../../lib/i18n/react";
 
 type HashAlgo = "MD5" | "SHA-1" | "SHA-256" | "SHA-384" | "SHA-512";
 
@@ -43,7 +44,7 @@ export function HashGenerator() {
     <div className="space-y-5">
       <textarea
         className="w-full p-3 border border-slate-300 rounded-lg font-mono text-sm min-h-[120px] resize-y"
-        placeholder="Enter text to hash..."
+        placeholder={t("Enter text to hash...", "输入要哈希的文本...")}
         value={input}
         onChange={(e) => setInput(e.target.value)}
       />
@@ -54,7 +55,7 @@ export function HashGenerator() {
           disabled={!input.trim()}
           className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm font-medium disabled:opacity-50 disabled:cursor-not-allowed"
         >
-          Hash All
+          {t("Hash All", "计算全部")}
         </button>
         {Object.keys(HASH_FUNCTIONS).map((algo) => (
           <button
@@ -83,7 +84,7 @@ export function HashGenerator() {
                   onClick={() => copy(hash, algo as HashAlgo)}
                   className="px-3 py-2 bg-slate-600 text-white rounded-lg hover:bg-slate-700 transition-colors text-sm shrink-0"
                 >
-                  {copiedAlgo === algo ? "Copied!" : "Copy"}
+                  {copiedAlgo === algo ? t("Copied!", "已复制！") : t("Copy", "复制")}
                 </button>
               </div>
             </div>

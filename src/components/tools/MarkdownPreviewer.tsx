@@ -1,5 +1,6 @@
 import { useState, useCallback } from "react";
 import { marked } from "marked";
+import { t } from "../../lib/i18n/react";
 
 export function MarkdownPreviewer() {
   const [text, setText] = useState("");
@@ -17,20 +18,20 @@ export function MarkdownPreviewer() {
   return (
     <div className="space-y-3">
       <div className="flex items-center justify-between">
-        <span className="text-sm text-slate-500">Markdown</span>
+        <span className="text-sm text-slate-500">{t("Markdown", "Markdown")}</span>
         <button
           onClick={copyHtml}
           disabled={!text}
           className="px-3 py-1 text-sm bg-slate-600 text-white rounded-lg hover:bg-slate-700 transition-colors disabled:opacity-50"
         >
-          {copied ? "Copied!" : "Copy HTML"}
+          {copied ? t("Copied!", "已复制！") : t("Copy HTML", "复制HTML")}
         </button>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         <textarea
           className="w-full p-3 border border-slate-300 rounded-lg font-mono text-sm min-h-[400px] resize-y"
-          placeholder="# Markdown here..."
+          placeholder={t("# Markdown here...", "# 在此输入Markdown...")}
           value={text}
           onChange={(e) => setText(e.target.value)}
         />

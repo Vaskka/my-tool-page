@@ -1,4 +1,5 @@
 import { useState, useCallback } from "react";
+import { t } from "../../lib/i18n/react";
 
 function toTitleCase(str: string): string {
   return str.replace(/\b\w/g, (c) => c.toUpperCase());
@@ -92,7 +93,7 @@ export function CaseConverter() {
     <div className="space-y-5">
       <textarea
         className="w-full p-3 border border-slate-300 rounded-lg font-mono text-sm min-h-[120px] resize-y"
-        placeholder="Enter text to convert..."
+        placeholder={t("Enter text to convert...", "输入要转换的文本...")}
         value={input}
         onChange={(e) => setInput(e.target.value)}
       />
@@ -118,13 +119,13 @@ export function CaseConverter() {
         <div className="space-y-2">
           <div className="flex items-center justify-between">
             <span className="text-sm text-slate-500">
-              Result <span className="text-xs text-slate-400">({activeCase})</span>
+              {t("Result", "结果")} <span className="text-xs text-slate-400">({activeCase})</span>
             </span>
             <button
               onClick={copy}
               className="px-3 py-1 text-sm bg-slate-600 text-white rounded-lg hover:bg-slate-700 transition-colors"
             >
-              {copied ? "Copied!" : "Copy"}
+              {copied ? t("Copied!", "已复制！") : t("Copy", "复制")}
             </button>
           </div>
           <div className="p-3 bg-slate-50 border border-slate-300 rounded-lg font-mono text-sm whitespace-pre-wrap break-all max-h-[300px] overflow-auto">

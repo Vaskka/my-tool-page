@@ -1,13 +1,11 @@
 ---
 import ToolLayout from "../../layouts/ToolLayout.astro";
 import { Base64Encoder } from "../../components/tools/Base64Encoder";
+import { allTools } from "../../config";
 
-const toolMeta = {
-  title: "Base64 Encoder / Decoder",
-  description: "Encode text to Base64 or decode Base64 strings back to plain text. Supports UTF-8 and binary data.",
-};
+const tool = allTools.find((t) => t.slug === "base64-encoder")!;
 ---
 
-<ToolLayout title={toolMeta.title} description={toolMeta.description} slug="base64-encoder">
+<ToolLayout title={tool.title} description={tool.description} content={tool.content}>
   <Base64Encoder client:load />
 </ToolLayout>

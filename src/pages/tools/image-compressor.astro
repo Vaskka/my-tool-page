@@ -1,13 +1,11 @@
 ---
 import ToolLayout from "../../layouts/ToolLayout.astro";
 import { ImageCompressor } from "../../components/tools/ImageCompressor";
+import { allTools } from "../../config";
 
-const toolMeta = {
-  title: "Image Compressor",
-  description: "Compress JPEG, PNG, and WebP images online. Reduce file size without losing quality. 100% client-side.",
-};
+const tool = allTools.find((t) => t.slug === "image-compressor")!;
 ---
 
-<ToolLayout title={toolMeta.title} description={toolMeta.description} slug="image-compressor">
+<ToolLayout title={tool.title} description={tool.description} content={tool.content}>
   <ImageCompressor client:load />
 </ToolLayout>

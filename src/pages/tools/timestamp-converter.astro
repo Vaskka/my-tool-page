@@ -1,13 +1,11 @@
 ---
 import ToolLayout from "../../layouts/ToolLayout.astro";
 import { TimestampConverter } from "../../components/tools/TimestampConverter";
+import { allTools } from "../../config";
 
-const toolMeta = {
-  title: "Timestamp Converter",
-  description: "Convert Unix timestamps to human-readable dates and vice versa. Supports seconds and milliseconds.",
-};
+const tool = allTools.find((t) => t.slug === "timestamp-converter")!;
 ---
 
-<ToolLayout title={toolMeta.title} description={toolMeta.description} slug="timestamp-converter">
+<ToolLayout title={tool.title} description={tool.description} content={tool.content}>
   <TimestampConverter client:load />
 </ToolLayout>

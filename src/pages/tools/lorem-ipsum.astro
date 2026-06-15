@@ -1,13 +1,11 @@
 ---
 import ToolLayout from "../../layouts/ToolLayout.astro";
 import { LoremIpsum } from "../../components/tools/LoremIpsum";
+import { allTools } from "../../config";
 
-const toolMeta = {
-  title: "Lorem Ipsum Generator",
-  description: "Generate Lorem Ipsum placeholder text for your designs. Customize paragraph count and length.",
-};
+const tool = allTools.find((t) => t.slug === "lorem-ipsum")!;
 ---
 
-<ToolLayout title={toolMeta.title} description={toolMeta.description} slug="lorem-ipsum">
+<ToolLayout title={tool.title} description={tool.description} content={tool.content}>
   <LoremIpsum client:load />
 </ToolLayout>

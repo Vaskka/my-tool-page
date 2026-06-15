@@ -1,13 +1,11 @@
 ---
 import ToolLayout from "../../layouts/ToolLayout.astro";
 import { TextDeduplicator } from "../../components/tools/TextDeduplicator";
+import { allTools } from "../../config";
 
-const toolMeta = {
-  title: "Text Deduplicator",
-  description: "Remove duplicate lines from text. Sort alphabetically, keep first occurrence, or remove all duplicates.",
-};
+const tool = allTools.find((t) => t.slug === "text-deduplicator")!;
 ---
 
-<ToolLayout title={toolMeta.title} description={toolMeta.description} slug="text-deduplicator">
+<ToolLayout title={tool.title} description={tool.description} content={tool.content}>
   <TextDeduplicator client:load />
 </ToolLayout>

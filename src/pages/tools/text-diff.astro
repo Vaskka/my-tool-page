@@ -1,13 +1,11 @@
 ---
 import ToolLayout from "../../layouts/ToolLayout.astro";
 import { TextDiff } from "../../components/tools/TextDiff";
+import { allTools } from "../../config";
 
-const toolMeta = {
-  title: "Text Diff Checker",
-  description: "Compare two texts and find differences instantly. See what was added, removed, or changed line by line.",
-};
+const tool = allTools.find((t) => t.slug === "text-diff")!;
 ---
 
-<ToolLayout title={toolMeta.title} description={toolMeta.description} slug="text-diff">
+<ToolLayout title={tool.title} description={tool.description} content={tool.content}>
   <TextDiff client:load />
 </ToolLayout>

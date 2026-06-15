@@ -1,13 +1,11 @@
 ---
 import ToolLayout from "../../layouts/ToolLayout.astro";
 import { HtmlEntityEncoder } from "../../components/tools/HtmlEntityEncoder";
+import { allTools } from "../../config";
 
-const toolMeta = {
-  title: "HTML Entity Encoder / Decoder",
-  description: "Encode special HTML characters to entities and decode HTML entities back to readable text.",
-};
+const tool = allTools.find((t) => t.slug === "html-entity-encoder")!;
 ---
 
-<ToolLayout title={toolMeta.title} description={toolMeta.description} slug="html-entity-encoder">
+<ToolLayout title={tool.title} description={tool.description} content={tool.content}>
   <HtmlEntityEncoder client:load />
 </ToolLayout>

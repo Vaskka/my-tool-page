@@ -1,13 +1,11 @@
 ---
 import ToolLayout from "../../layouts/ToolLayout.astro";
 import { UuidGenerator } from "../../components/tools/UuidGenerator";
+import { allTools } from "../../config";
 
-const toolMeta = {
-  title: "UUID Generator",
-  description: "Generate random UUIDs (v4) and GUIDs. Copy with one click. Perfect for developer testing.",
-};
+const tool = allTools.find((t) => t.slug === "uuid-generator")!;
 ---
 
-<ToolLayout title={toolMeta.title} description={toolMeta.description} slug="uuid-generator">
+<ToolLayout title={tool.title} description={tool.description} content={tool.content}>
   <UuidGenerator client:load />
 </ToolLayout>

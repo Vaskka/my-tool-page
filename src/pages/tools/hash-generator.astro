@@ -1,13 +1,11 @@
 ---
 import ToolLayout from "../../layouts/ToolLayout.astro";
 import { HashGenerator } from "../../components/tools/HashGenerator";
+import { allTools } from "../../config";
 
-const toolMeta = {
-  title: "Hash Generator",
-  description: "Generate MD5, SHA-1, SHA-256, SHA-384, and SHA-512 hashes from any text input.",
-};
+const tool = allTools.find((t) => t.slug === "hash-generator")!;
 ---
 
-<ToolLayout title={toolMeta.title} description={toolMeta.description} slug="hash-generator">
+<ToolLayout title={tool.title} description={tool.description} content={tool.content}>
   <HashGenerator client:load />
 </ToolLayout>

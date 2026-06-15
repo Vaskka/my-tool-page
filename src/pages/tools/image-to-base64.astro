@@ -1,13 +1,11 @@
 ---
 import ToolLayout from "../../layouts/ToolLayout.astro";
 import { ImageToBase64 } from "../../components/tools/ImageToBase64";
+import { allTools } from "../../config";
 
-const toolMeta = {
-  title: "Image to Base64",
-  description: "Convert images to Base64 data URIs. Embed images directly in HTML, CSS, or JSON without external files.",
-};
+const tool = allTools.find((t) => t.slug === "image-to-base64")!;
 ---
 
-<ToolLayout title={toolMeta.title} description={toolMeta.description} slug="image-to-base64">
+<ToolLayout title={tool.title} description={tool.description} content={tool.content}>
   <ImageToBase64 client:load />
 </ToolLayout>

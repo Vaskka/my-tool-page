@@ -1,13 +1,11 @@
 ---
 import ToolLayout from "../../layouts/ToolLayout.astro";
 import { CaseConverter } from "../../components/tools/CaseConverter";
+import { allTools } from "../../config";
 
-const toolMeta = {
-  title: "Case Converter",
-  description: "Convert text to uppercase, lowercase, title case, sentence case, camelCase, snake_case, and more.",
-};
+const tool = allTools.find((t) => t.slug === "case-converter")!;
 ---
 
-<ToolLayout title={toolMeta.title} description={toolMeta.description} slug="case-converter">
+<ToolLayout title={tool.title} description={tool.description} content={tool.content}>
   <CaseConverter client:load />
 </ToolLayout>

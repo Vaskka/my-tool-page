@@ -1,13 +1,11 @@
 ---
 import ToolLayout from "../../layouts/ToolLayout.astro";
 import { MarkdownPreviewer } from "../../components/tools/MarkdownPreviewer";
+import { allTools } from "../../config";
 
-const toolMeta = {
-  title: "Markdown Previewer",
-  description: "Write and preview Markdown in real-time. See how your Markdown renders as HTML instantly.",
-};
+const tool = allTools.find((t) => t.slug === "markdown-previewer")!;
 ---
 
-<ToolLayout title={toolMeta.title} description={toolMeta.description} slug="markdown-previewer">
+<ToolLayout title={tool.title} description={tool.description} content={tool.content}>
   <MarkdownPreviewer client:load />
 </ToolLayout>

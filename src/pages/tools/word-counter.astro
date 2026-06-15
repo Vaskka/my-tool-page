@@ -1,13 +1,11 @@
 ---
 import ToolLayout from "../../layouts/ToolLayout.astro";
 import { WordCounter } from "../../components/tools/WordCounter";
+import { allTools } from "../../config";
 
-const toolMeta = {
-  title: "Word Counter",
-  description: "Count words, characters, sentences, and paragraphs. Get reading time estimates for your text.",
-};
+const tool = allTools.find((t) => t.slug === "word-counter")!;
 ---
 
-<ToolLayout title={toolMeta.title} description={toolMeta.description} slug="word-counter">
+<ToolLayout title={tool.title} description={tool.description} content={tool.content}>
   <WordCounter client:load />
 </ToolLayout>

@@ -1,13 +1,11 @@
 ---
 import ToolLayout from "../../layouts/ToolLayout.astro";
 import { QrCodeGenerator } from "../../components/tools/QrCodeGenerator";
+import { allTools } from "../../config";
 
-const toolMeta = {
-  title: "QR Code Generator",
-  description: "Generate QR codes from URLs, text, or any data. Customizable size and color. Free, no sign-up needed.",
-};
+const tool = allTools.find((t) => t.slug === "qr-code-generator")!;
 ---
 
-<ToolLayout title={toolMeta.title} description={toolMeta.description} slug="qr-code-generator">
+<ToolLayout title={tool.title} description={tool.description} content={tool.content}>
   <QrCodeGenerator client:load />
 </ToolLayout>

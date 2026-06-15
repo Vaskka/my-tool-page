@@ -1,13 +1,11 @@
 ---
 import ToolLayout from "../../layouts/ToolLayout.astro";
 import { ColorConverter } from "../../components/tools/ColorConverter";
+import { allTools } from "../../config";
 
-const toolMeta = {
-  title: "Color Converter",
-  description: "Convert colors between HEX, RGB, HSL, and HSV formats. Pick colors visually with the color picker.",
-};
+const tool = allTools.find((t) => t.slug === "color-converter")!;
 ---
 
-<ToolLayout title={toolMeta.title} description={toolMeta.description} slug="color-converter">
+<ToolLayout title={tool.title} description={tool.description} content={tool.content}>
   <ColorConverter client:load />
 </ToolLayout>

@@ -1,13 +1,11 @@
 ---
 import ToolLayout from "../../layouts/ToolLayout.astro";
 import { JsonFormatter } from "../../components/tools/JsonFormatter";
+import { allTools } from "../../config";
 
-const toolMeta = {
-  title: "JSON Formatter",
-  description: "Format, validate, and beautify JSON data instantly. Parse and fix malformed JSON with syntax highlighting.",
-};
+const tool = allTools.find((t) => t.slug === "json-formatter")!;
 ---
 
-<ToolLayout title={toolMeta.title} description={toolMeta.description} slug="json-formatter">
+<ToolLayout title={tool.title} description={tool.description} content={tool.content}>
   <JsonFormatter client:load />
 </ToolLayout>

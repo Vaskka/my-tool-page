@@ -240,8 +240,6 @@ export const reactStrings: Record<string, { en: string; zh: string }> = {
   "common.copyBase64":     { en: "Copy Base64",     zh: "复制Base64" },
   "common.copyAsCSS":      { en: "Copy as CSS",     zh: "复制为CSS" },
   "common.copyAsIMG":      { en: "Copy as IMG",     zh: "复制为IMG" },
-  "common.copyAll":        { en: "Copy All",        zh: "全部复制" },
-  "common.copiedAll":      { en: "Copied All!",     zh: "已全部复制！" },
 
   // Base64Encoder
   "base64.placeholder":    { en: "Enter text to encode/decode...", zh: "输入要编码/解码的文本..." },

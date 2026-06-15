@@ -2,11 +2,11 @@
 import { dict } from "../lib/i18n/index";
 ---
 
+<script type="application/json" id="i18n-dict" set:html={JSON.stringify(dict)}></script>
 <script is:inline>
 (function () {
-  var dict = {
-    {Object.entries(dict).map(([key, val]) => `"${key}":{"en":${JSON.stringify(val.en)},"zh":${JSON.stringify(val.zh)}}`).join(",\n    ")}
-  };
+  var dictEl = document.getElementById('i18n-dict');
+  var dict = dictEl ? JSON.parse(dictEl.textContent || '{}') : {};
 
   function getLocale() {
     var match = document.cookie.match(/locale=(\w+)/);

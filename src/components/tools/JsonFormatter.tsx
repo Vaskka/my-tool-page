@@ -46,6 +46,20 @@ export function JsonFormatter() {
     }
   }, [input]);
 
+  const escape = useCallback(() => {
+    const result = input.replace(/\\/g, "\\\\").replace(/"/g, '\\"');
+    setOutput(result);
+    setError("");
+    setValid(null);
+  }, [input]);
+
+  const unescape = useCallback(() => {
+    const result = input.replace(/\\"/g, '"').replace(/\\\\/g, "\\");
+    setOutput(result);
+    setError("");
+    setValid(null);
+  }, [input]);
+
   const copy = useCallback(async () => {
     const text = output || input;
     if (!text) return;
@@ -84,6 +98,20 @@ export function JsonFormatter() {
           disabled={!input.trim()}
         >
           Validate
+        </button>
+        <button
+          onClick={escape}
+          className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"
+          disabled={!input.trim()}
+        >
+          Escape
+        </button>
+        <button
+          onClick={unescape}
+          className="px-4 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-700 transition-colors"
+          disabled={!input.trim()}
+        >
+          Unescape
         </button>
       </div>
 

@@ -6,6 +6,6 @@ import { allTools } from "../../config";
 const tool = allTools.find((t) => t.slug === "image-to-base64")!;
 ---
 
-<ToolLayout title={tool.title} description={tool.description} content={tool.content}>
+<ToolLayout title={tool.title} description={tool.description} slug={tool.slug}>
   <ImageToBase64 client:load />
 </ToolLayout>

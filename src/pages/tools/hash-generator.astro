@@ -6,6 +6,6 @@ import { allTools } from "../../config";
 const tool = allTools.find((t) => t.slug === "hash-generator")!;
 ---
 
-<ToolLayout title={tool.title} description={tool.description} content={tool.content}>
+<ToolLayout title={tool.title} description={tool.description} slug={tool.slug}>
   <HashGenerator client:load />
 </ToolLayout>

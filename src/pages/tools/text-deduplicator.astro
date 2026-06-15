@@ -6,6 +6,6 @@ import { allTools } from "../../config";
 const tool = allTools.find((t) => t.slug === "text-deduplicator")!;
 ---
 
-<ToolLayout title={tool.title} description={tool.description} content={tool.content}>
+<ToolLayout title={tool.title} description={tool.description} slug={tool.slug}>
   <TextDeduplicator client:load />
 </ToolLayout>

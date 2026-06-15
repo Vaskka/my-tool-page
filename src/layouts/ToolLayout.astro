@@ -2,21 +2,14 @@
 import BaseLayout from "./BaseLayout.astro";
 import AdUnit from "../components/AdUnit.astro";
 
-export interface Content {
-  intro: string;
-  steps: string[];
-  tips: string[];
-}
-
 export interface Props {
   title: string;
   description: string;
-  keywords?: string;
+  slug: string;
   canonical?: string;
-  content: Content;
 }
 
-const { content, ...props } = Astro.props;
+const { slug, ...props } = Astro.props;
 ---
 
 <BaseLayout
@@ -26,8 +19,8 @@ const { content, ...props } = Astro.props;
 >
   <div class="max-w-4xl mx-auto px-4 py-8">
     <article>
-      <h1 class="text-3xl font-bold text-slate-900 mb-2">{props.title}</h1>
-      <p class="text-slate-600 mb-6">{props.description}</p>
+      <h1 class="text-3xl font-bold text-slate-900 mb-2" data-i18n={`tool.${slug}.title`}>{props.title}</h1>
+      <p class="text-slate-600 mb-6" data-i18n={`tool.${slug}.description`}>{props.description}</p>
 
       <AdUnit slot="top" />
 
@@ -38,21 +31,25 @@ const { content, ...props } = Astro.props;
       <AdUnit slot="bottom" />
 
       <div class="mt-8 prose prose-slate max-w-none">
-        <h2>About the {props.title}</h2>
-        <p>{content.intro}</p>
+        <h2 data-i18n={`tool.${slug}.aboutHeading`}>About the {props.title}</h2>
+        <p data-i18n={`tool.${slug}.intro`}>Loading...</p>
 
-        <h2>How to Use</h2>
+        <h2 data-i18n="tool.howToUseHeading">How to Use</h2>
         <ol>
-          {content.steps.map((step) => <li>{step}</li>)}
+          {[1, 2, 3, 4, 5].map((n) => (
+            <li data-i18n={`tool.${slug}.step${n}`}>Step {n}</li>
+          ))}
         </ol>
 
-        <h2>Tips & Best Practices</h2>
+        <h2 data-i18n="tool.tipsHeading">Tips & Best Practices</h2>
         <ul>
-          {content.tips.map((tip) => <li>{tip}</li>)}
+          {[1, 2, 3, 4].map((n) => (
+            <li data-i18n={`tool.${slug}.tip${n}`}>Tip {n}</li>
+          ))}
         </ul>
 
         <div class="p-4 bg-blue-50 rounded-lg border border-blue-100 not-prose mt-6">
-          <p class="text-sm text-blue-700 font-medium">
+          <p class="text-sm text-blue-700 font-medium" data-i18n="tool.privacyNotice">
             This {props.title.toLowerCase()} runs entirely in your browser.
             No data is uploaded to any server. Your privacy is completely protected.
           </p>

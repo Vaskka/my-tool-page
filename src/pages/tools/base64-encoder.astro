@@ -6,6 +6,6 @@ import { allTools } from "../../config";
 const tool = allTools.find((t) => t.slug === "base64-encoder")!;
 ---
 
-<ToolLayout title={tool.title} description={tool.description} content={tool.content}>
+<ToolLayout title={tool.title} description={tool.description} slug={tool.slug}>
   <Base64Encoder client:load />
 </ToolLayout>

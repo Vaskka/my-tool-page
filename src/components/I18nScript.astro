@@ -5,10 +5,14 @@ import { dict } from "../lib/i18n/index";
 <script type="application/json" id="i18n-dict" set:html={JSON.stringify(dict)}></script>
 <script is:inline>
 (function () {
+  var STORAGE_KEY = '__i18n_locale__';
   var dictEl = document.getElementById('i18n-dict');
   var dict = dictEl ? JSON.parse(dictEl.textContent || '{}') : {};
 
   function getLocale() {
+    var stored = localStorage.getItem(STORAGE_KEY);
+    if (stored === 'zh' || stored === 'en') return stored;
+
     var match = document.cookie.match(/locale=(\w+)/);
     if (match && match[1] === 'zh') return 'zh';
     if (match && match[1] === 'en') return 'en';
@@ -19,37 +23,59 @@ import { dict } from "../lib/i18n/index";
     return 'en';
   }
 
+  function getText(key, locale) {
+    if (dict[key]) return dict[key][locale];
+    return null;
+  }
+
+  function applyLocale(locale) {
+    window.__LOCALE__ = locale;
+    localStorage.setItem(STORAGE_KEY, locale);
+    document.documentElement.lang = locale === 'zh' ? 'zh-CN' : 'en';
+
+    var els = document.querySelectorAll('[data-i18n]');
+    for (var i = 0; i < els.length; i++) {
+      var el = els[i];
+      var key = el.getAttribute('data-i18n');
+      var text = getText(key, locale);
+      if (text) el.textContent = text;
+    }
+
+    var attrEls = document.querySelectorAll('[data-i18n-placeholder]');
+    for (var j = 0; j < attrEls.length; j++) {
+      var ael = attrEls[j];
+      var akey = ael.getAttribute('data-i18n-placeholder');
+      var ptext = getText(akey, locale);
+      if (ptext) ael.setAttribute('placeholder', ptext);
+    }
+
+    updateToggleButton(locale);
+  }
+
+  function updateToggleButton(locale) {
+    var btn = document.getElementById('locale-toggle');
+    if (btn) {
+      btn.textContent = locale === 'zh' ? 'EN' : '中文';
+      btn.title = locale === 'zh' ? 'Switch to English' : '切换到中文';
+    }
+  }
+
+  window.__switchLocale__ = function () {
+    var current = window.__LOCALE__ || 'en';
+    var next = current === 'zh' ? 'en' : 'zh';
+    applyLocale(next);
+  };
+
   var locale = getLocale();
-  window.__LOCALE__ = locale;
 
-  document.documentElement.lang = locale === 'zh' ? 'zh-CN' : 'en';
+  function doApply() {
+    applyLocale(locale);
+  }
 
-  if (locale === 'zh') {
-    function applyLocale() {
-      var els = document.querySelectorAll('[data-i18n]');
-      for (var i = 0; i < els.length; i++) {
-        var el = els[i];
-        var key = el.getAttribute('data-i18n');
-        if (key && dict[key]) {
-          el.textContent = dict[key].zh;
-        }
-      }
-
-      var attrEls = document.querySelectorAll('[data-i18n-placeholder]');
-      for (var j = 0; j < attrEls.length; j++) {
-        var ael = attrEls[j];
-        var akey = ael.getAttribute('data-i18n-placeholder');
-        if (akey && dict[akey]) {
-          ael.setAttribute('placeholder', dict[akey].zh);
-        }
-      }
-    }
-
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', applyLocale);
-    } else {
-      applyLocale();
-    }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', doApply);
+  } else {
+    doApply();
   }
 })();
 </script>

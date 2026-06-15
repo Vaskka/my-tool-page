@@ -1,5 +1,5 @@
 ---
-import { siteTitle, navLinks } from "../config";
+import { siteTitle } from "../config";
 ---
 
 <header class="border-b border-slate-200 bg-white sticky top-0 z-50">
@@ -7,25 +7,34 @@ import { siteTitle, navLinks } from "../config";
     <a href="/" class="text-xl font-bold text-blue-600 no-underline" data-i18n="site.title">
       {siteTitle}
     </a>
-    <ul class="flex gap-4 list-none m-0 p-0 text-sm">
-      <li>
-        <a
-          href="/"
-          class="text-slate-600 hover:text-blue-600 no-underline transition-colors"
-          data-i18n="nav.home"
-        >
-          Home
-        </a>
-      </li>
-      <li>
-        <a
-          href="/about/"
-          class="text-slate-600 hover:text-blue-600 no-underline transition-colors"
-          data-i18n="nav.about"
-        >
-          About
-        </a>
-      </li>
-    </ul>
+    <div class="flex items-center gap-4">
+      <ul class="flex gap-4 list-none m-0 p-0 text-sm items-center">
+        <li>
+          <a
+            href="/"
+            class="text-slate-600 hover:text-blue-600 no-underline transition-colors"
+            data-i18n="nav.home"
+          >
+            Home
+          </a>
+        </li>
+        <li>
+          <a
+            href="/about/"
+            class="text-slate-600 hover:text-blue-600 no-underline transition-colors"
+            data-i18n="nav.about"
+          >
+            About
+          </a>
+        </li>
+      </ul>
+      <button
+        id="locale-toggle"
+        class="text-xs font-medium px-2.5 py-1 rounded-full border border-slate-300 text-slate-600 hover:border-blue-400 hover:text-blue-600 hover:bg-blue-50 transition-colors cursor-pointer"
+        onclick="window.__switchLocale__ && window.__switchLocale__()"
+      >
+        中文
+      </button>
+    </div>
   </nav>
 </header>
